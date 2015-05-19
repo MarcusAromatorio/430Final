@@ -22,7 +22,7 @@ var ResponseSchema = new mongoose.Schema({
 	link: {
 		type: Boolean,
 		required: true
-	}
+	},
 
 	referral: {
 		type: String,
