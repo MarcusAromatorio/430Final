@@ -2,7 +2,7 @@
 * This Model View Controller project is written in javascript to demostrate understanding of the MVC pattern
 * RIT Interactive Games & Media 430: Rich Media Web Apps 2
 *
-* This application allows users to connect to a profile and "chat" to the server
+* This application allows users to connect to a profile and receive info from a server
 * The server responds to the user as if it were a cat meowing at a person
 *
 * Code is borrowed from Cody Van De Mark's in-class examples on the MVC pattern
@@ -23,7 +23,7 @@ var RedisStore = require('connect-redis')(session); // Interface with the Redis 
 var url = require('url');                           // Function to parse urls easily ad without much overhead
 
 // Locate the database URI (uniform resource identifier) to store data. When pushed to Heroku, process.env.MONGOLAB_URI will be defined automatically
-var dbURI = process.env.MONGOLAB_URI || "mongodb://localhost/catcalling";
+var dbURI = process.env.MONGOLAB_URI || "mongodb://localhost/thevoid";
 
 // With the URI set, connect to the database, saving reference as 'db'
 var db = mongoose.connect(dbURI, function(error) {
@@ -82,7 +82,6 @@ app.use(session({
         port: redisURL.port,
         pass: redisPASS
     }),
-    secret: 'Cat Facts',
     resave: true,
     saveUninitialized: false
 }));
@@ -101,6 +100,9 @@ app.use(cookieParser());
 
 // Define the routes that the application serves once requested
 router(app);    // Modifies the app object with added functionality
+
+// Quickly check if the app's database is populated - doing so if it is empty
+require(models).Response.ResponseModel.populateDataBase();
 
 // Start off the server by listening on the predefined port
 server = app.listen(port, function (error){
