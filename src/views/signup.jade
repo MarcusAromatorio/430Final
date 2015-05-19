@@ -1,0 +1,23 @@
+extends ./base.jade
+block append style
+  link(rel="stylesheet", type="text/css", href="/assets/style.css")
+block body
+  .wrapper
+      nav
+        .navlink
+          a(href='/login') Login
+      section#signup
+        form#signupForm.mainForm(name='signupForm', action='/signup', method='POST')
+          .pairing
+            label(for='username') Username: 
+            input#user(type='text', name='username', placeholder='username')
+          .pairing
+            label(for='pass') Password: 
+            input#pass(type='password', name='pass', placeholder='password')
+          .pairing
+            label(for='pass2') Re-Type Password: 
+            input#pass2(type='password', name='pass2', placeholder='retype password')
+          a#signupSubmit.formSubmit(href='#') Sign up
+      p#errorMessage
+block scripts
+  script(src="/assets/client.js")

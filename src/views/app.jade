@@ -1,0 +1,15 @@
+extends ./base.jade
+block append style
+  link(rel="stylesheet", type="text/css", href="/assets/style.css")
+block body
+    .wrapper
+    nav
+      .navlink
+        a(href='/logout') Log Out
+    a#stare(href='#') Stare into the Void
+    p#errorMessage
+  #voidReturn
+  .imageContainer
+    img.backdrop(src='/assets/img/mars.png')
+block scripts
+  script(src="/assets/voidStare.js")
